@@ -35,7 +35,6 @@
 ### Association
 
 - belongs_to :user
-- has_one :ship
 - has_one :purchase
 
 ## purchase table
