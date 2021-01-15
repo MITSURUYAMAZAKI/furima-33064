@@ -24,12 +24,13 @@
 |-------------------|---------|-------------------|
 | name              | string  | null: false       |
 | explain           | text    | null: false       |
-| category.id       | integer | null: false       |
-| condition.id      | integer | null: false       |
+| category_id       | integer | null: false       |
+| condition_id      | integer | null: false       |
 | fee.id            | integer | null: false       |
-| prefecture.id     | integer | null: false       |
-| shipping_dur.id   | integer | null: false       |
+| prefecture_id     | integer | null: false       |
+| shipping_dur_id   | integer | null: false       |
 | price             | integer | null: false       |
+| user              | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -38,15 +39,11 @@
 
 ## purchase table
 
-| Column            | Type    | Options                   |
-|-------------------|---------|---------------------------|
-| email             | string  | null: false, foreign_key: |
-| name              | string  | null: false, foreign_key: |
-<!-- 
-＞購入管理テーブルに保存するのは、「誰が」「何の商品」を購入したかという情報ですので、
-＞userとitemの外部キーのみをカラムとして準備しましょう。
-いまいち意味がよくわかってないのですが、こういうことでよろしいのでしょうか？
- -->
+| Column            | Type       | Options                        |
+|-------------------|------------|--------------------------------|
+| user              | references | null: false, foreign_key: true |
+| item              | references | null: false, foreign_key: true |
+
 ### Association
 - belongs_to :user
 - belongs_to :item
@@ -62,7 +59,7 @@
 | address           | string  | null: false       |
 | building_name     | string  |
 | phone_number      | string  | null: false       |
-| email             | string  | null: false, foreign_key: |
+| purchase          | references | null: false, foreign_key: |
 
 ### Association
 
