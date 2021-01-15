@@ -2,14 +2,14 @@
 
 ## users table
 
-| Column            | Type      | Options         |
-|-------------------|-----------|-----------------|
-| nick_name         | string    | null: false     |
-| email             | string    | null: false     |
-| password          | string    | null: false     |
-| name              | string    | null: false     |
-| name_kana         | string    | null: false     |
-| birthday          | text      | null: false     |
+| Column            | Type     | Options         |
+|-------------------|----------|-----------------|
+| nick_name         | string   | null: false     |
+| email             | string   | null: false     |
+| password          | string   | null: false     |
+| name              | string   | null: false     |
+| name_kana         | string   | null: false     |
+| birthday          | text     | null: false     |
 
 ### Association
 
