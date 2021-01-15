@@ -16,7 +16,7 @@
 ### Association
 
 - has_many :items
-- has_one :purchase
+- has_many :purchases
 
 ## items table
 
@@ -25,9 +25,9 @@
 <!-- | image             | image   | null: false       | active_storage導入時に自動でテーブルなどが生成される為削除-->
 | item_name         | string  | null: false       |
 | explain           | text    | null: false       |
-| category          | string  | null: false       |
-| fee               | string  | null: false       |
-| from              | string  | null: false       |
+| category          | integer | null: false       |
+| fee               | integer | null: false       |
+| from              | integer | null: false       |
 | shipping_dur.     | integer | null: false       |
 | price             | integer | null: false       |
 
@@ -40,21 +40,19 @@
 
 | Column            | Type    | Options           |
 |-------------------|---------|-------------------|
-| card              | string  | null: false       |
 | expiration        | date    | null: false       |
 | security_code     | string  | null: false       |
 
 ### Association
-- belongs_to : user
-- has_one : ship
-
+- belongs_to :user
+- belongs_to :item
 
 ## ship table
 
 | Column            | Type    | Options           |
 |-------------------|---------|-------------------|
 | zip_code          | string  | null: false       |
-| prefecture        | string  | null: false       |  <!-- active hash を使う -->
+| prefecture        | integer | null: false       |  <!-- active hash を使う -->
 | city              | string  | null: false       |
 | address           | string  | null: false       |
 | building_name     | string  |
@@ -62,8 +60,7 @@
 
 ### Association
 
-- belongs_to : item
-- has_one :purchase
+- belongs_to :purchase
 
 <!-- ## comments table
 
