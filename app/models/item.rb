@@ -1,27 +1,33 @@
 class Item < ApplicationRecord
   with_options presence:true do
-    validetes :name
-    validetes :explain
-    validetes :category_id
-    validetes :condition_id
-    validetes :fee_id
-    validetes :prefecture_id
-    validetes :shipping_dur_id
-    validetes :price
-    validetes :user, foreign_key: true
+    validates :image
+    validates :name
+    validates :explain
+    validates :category_id
+    validates :condition_id
+    validates :fee_id
+    validates :prefecture_id
+    validates :shipping_dur_id
+    validates :price, numericality:{greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999}
+    validates :user
   end
 
   belongs_to :user
   # has_one :purchase
 
   extend ActiveHash::Associations::ActiveRecordExtensions
-  has_one :category_id, :condition_id, :fee_id, :prefecture_id, :shipping_dur_id
+  has_one :category
+  has_one :condition
+  has_one :fee
+  has_one :prefecture
+  has_one :shipping_dur
+  has_one_attached :image
 
-  validates :category_id, numericalty: {other_than:1}
-  validates :condition_id, numericalty: {other_than:1}
-  validates :fee_id, numericalty: {other_than:1}
-  validates :prefecture_id, numericalty: {other_than:1}
-  validates :shipping_dur_id, numericalty: {other_than:1}
+  validates :category_id, numericality: {other_than:1}
+  validates :condition_id, numericality: {other_than:1}
+  validates :fee_id, numericality: {other_than:1}
+  validates :prefecture_id, numericality: {other_than:1}
+  validates :shipping_dur_id, numericality: {other_than:1}
 end
 
 # user の foreign_key: true の表記は合っているか？
