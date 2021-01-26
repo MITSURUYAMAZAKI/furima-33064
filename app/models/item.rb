@@ -3,11 +3,13 @@ class Item < ApplicationRecord
     validates :image
     validates :name
     validates :explain
-    validates :category_id
-    validates :condition_id
-    validates :fee_id
-    validates :prefecture_id
-    validates :shipping_dur_id
+    with_options numericality:{other_than:1} do
+      validates :category_id
+      validates :condition_id
+      validates :fee_id
+      validates :prefecture_id
+      validates :shipping_dur_id
+    end
     validates :price, numericality:{greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999}
     validates :user
   end
@@ -23,11 +25,6 @@ class Item < ApplicationRecord
   has_one :shipping_dur
   has_one_attached :image
 
-  validates :category_id, numericality: {other_than:1}
-  validates :condition_id, numericality: {other_than:1}
-  validates :fee_id, numericality: {other_than:1}
-  validates :prefecture_id, numericality: {other_than:1}
-  validates :shipping_dur_id, numericality: {other_than:1}
 end
 
 # user の foreign_key: true の表記は合っているか？
