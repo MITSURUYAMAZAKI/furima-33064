@@ -18,11 +18,11 @@ class Item < ApplicationRecord
   # has_one :purchase
 
   extend ActiveHash::Associations::ActiveRecordExtensions
-  has_one :category
-  has_one :condition
-  has_one :fee
-  has_one :prefecture
-  has_one :shipping_dur
+  belongs_to :category
+  belongs_to :condition
+  belongs_to :fee
+  belongs_to :prefecture
+  belongs_to :shipping_dur
   has_one_attached :image
 
 end

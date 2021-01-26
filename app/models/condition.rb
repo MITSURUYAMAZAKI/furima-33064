@@ -9,5 +9,5 @@ class Condition < ActiveHash::Base
   ]
 
   include ActiveHash::Associations
-    belongs_to :item
+  has_many :items
 end
