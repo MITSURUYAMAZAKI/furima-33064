@@ -26,5 +26,3 @@ class Item < ApplicationRecord
   has_one_attached :image
 
 end
-
-# user の foreign_key: true の表記は合っているか？
