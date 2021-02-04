@@ -3,7 +3,12 @@ require 'rails_helper'
 RSpec.describe Buy, type: :model do
   describe 'クレジットカード情報・配送先情報の保存' do
     before do
-      @buy = FactoryBot.build(:buy)
+      user = FactoryBot.create(:user)
+      item = FactoryBot.build(:item)
+      item.user.email = "test@test"
+      item.save
+      @buy = FactoryBot.build(:buy, user_id: user.id, item_id: item.id)
+      sleep 1
     end
 
     context '商品購入ができる場合' do
