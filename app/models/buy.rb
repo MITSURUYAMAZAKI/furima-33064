@@ -10,7 +10,7 @@ class Buy
     validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
     validates :city
     validates :address
-    validates :phone_number, format:{ with: /\d{10,11}/, message: "is invalid. It can't include hyphen(-)"}, length: { minimum: 10, maximum:11 }
+    validates :phone_number, format:{ with: /\d{10,11}/, message: "is invalid. It can't include hyphen(-). And only number"}, length: { minimum: 10, maximum:11 }
     validates :token
   end
   

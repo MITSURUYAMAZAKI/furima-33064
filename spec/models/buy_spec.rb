@@ -70,7 +70,7 @@ RSpec.describe Buy, type: :model do
       it '電話番号に"-"を含むと保存できないこと' do
         @buy.phone_number = "090-4444-1255"
         @buy.valid?
-        expect(@buy.errors.full_messages).to include("Phone number is invalid. It can't include hyphen(-)")
+        expect(@buy.errors.full_messages).to include("Phone number is invalid. It can't include hyphen(-). And only number")
       end
 
       it '電話番号が12桁以上だと保存できないこと' do
@@ -83,6 +83,12 @@ RSpec.describe Buy, type: :model do
         @buy.phone_number = "052395100"
         @buy.valid?
         expect(@buy.errors.full_messages).to include("Phone number is too short (minimum is 10 characters)")
+      end
+
+      it '電話番号が英数混合であると保存できないこと' do
+        @buy.phone_number = "052df0er41"
+        @buy.valid?
+        expect(@buy.errors.full_messages).to include("Phone number is invalid. It can't include hyphen(-). And only number")
       end
 
       it 'user_idが空だと保存できないこと' do
