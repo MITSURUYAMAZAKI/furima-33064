@@ -1,8 +1,7 @@
 class PurchasesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_item
-  before_action :purchase_history
-  before_action :oneself_items
+  before_action :purchase_history_and_oneself_items
 
   def index
     @buy = Buy.new
@@ -10,7 +9,6 @@ class PurchasesController < ApplicationController
 
   def create
     @buy = Buy.new(buy_params)
-    # binding.pry
     if @buy.valid?
       pay_item
       @buy.save
@@ -29,9 +27,9 @@ class PurchasesController < ApplicationController
   def pay_item
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     Payjp::Charge.create(
-      amount: @item.price,  # 商品の値段
-      card: buy_params[:token],    # カードトークン
-      currency: 'jpy'                 # 通貨の種類（日本円）
+      amount: @item.price,
+      card: buy_params[:token],
+      currency: 'jpy'
     )
   end
 
@@ -39,14 +37,8 @@ class PurchasesController < ApplicationController
     @item =Item.find(params[:item_id])
   end
 
-  def purchase_history
-    if @item.purchase.present?
-      redirect_to root_path
-    end
-  end
-
-  def oneself_items
-    if @item.user_id == current_user.id
+  def purchase_history_and_oneself_items
+    if @item.purchase.present? || @item.user_id == current_user.id
       return redirect_to root_path
     end
   end
