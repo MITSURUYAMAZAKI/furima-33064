@@ -15,7 +15,7 @@ class Item < ApplicationRecord
   end
 
   belongs_to :user
-  # has_one :purchase
+  has_one :purchase
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
